@@ -1,17 +1,114 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>My JSP Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Report Generation</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 </head>
-<body>
-<h3 >This is the index page of the application</h3>
-<button type="button" class="btn btn-success">Home</button>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg p-4">
+        <h3 class="mb-4 text-primary">
+            <i class="bi bi-bar-chart-line"></i> Report Generation
+        </h3>
+
+        <form:form method="POST" action="search" modelAttribute="search">
+
+            <!-- Row 1 -->
+            <div class="row mb-3">
+
+                <div class="col-md-4">
+                    <label class="form-label">Plan Name</label>
+                    <form:select path="planName" cssClass="form-select">
+                        <form:option value="">-Select-</form:option>
+                        <form:options items="${names}" />
+                    </form:select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Plan Status</label>
+                    <form:select path="planStatus" cssClass="form-select">
+                        <form:option value="">-Select-</form:option>
+                        <form:options items="${status}" />
+                    </form:select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Gender</label>
+                    <form:select path="gender" cssClass="form-select">
+                        <form:option value="">-Select-</form:option>
+                        <form:option value="Male">Male</form:option>
+                        <form:option value="Female">Female</form:option>
+                    </form:select>
+                </div>
+
+            </div>
+
+            <!-- Row 2 -->
+            <div class="row mb-3">
+
+                <div class="col-md-4">
+                    <label class="form-label">Start Date</label>
+                    <form:input type="date" path="startDate" cssClass="form-control"/>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">End Date</label>
+                    <form:input type="date" path="endDate" cssClass="form-control"/>
+                </div>
+
+                <div class="col-md-4 d-flex align-items-end">
+                    <form:button cssClass="btn btn-primary w-100">
+                        <i class="bi bi-search"></i> Search
+                    </form:button>
+                </div>
+
+            </div>
+
+        </form:form>
+
+        <hr>
+
+        <!-- Results Section Placeholder -->
+        <div class="text-muted text-center py-3">
+            <i class="bi bi-table"></i> Results will appear here
+        </div>
+
+        <hr>
+
+        <!-- Export Section -->
+        <div class="row align-items-center">
+
+            <div class="col-md-6">
+                <h6 class="mb-0">Export Options</h6>
+            </div>
+
+            <div class="col-md-6">
+                <select class="form-select" name="exportType">
+                    <option value="pdf">PDF</option>
+                    <option value="excel">Excel</option>
+                </select>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

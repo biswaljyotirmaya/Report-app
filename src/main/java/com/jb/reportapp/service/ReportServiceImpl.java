@@ -16,12 +16,12 @@ public class ReportServiceImpl implements IRepostService{
 
     @Override
     public List<String> getPlanNames() {
-        return List.of();
+        return citizenPlanRepository.getPlansName();
     }
 
     @Override
     public List<String> getPlanStatuses() {
-        return List.of();
+        return citizenPlanRepository.getCitizenStatuses();
     }
 
     @Override
