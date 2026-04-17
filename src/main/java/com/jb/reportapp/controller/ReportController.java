@@ -1,5 +1,6 @@
 package com.jb.reportapp.controller;
 
+import com.jb.reportapp.entity.CitizenPlan;
 import com.jb.reportapp.request.SearchRequest;
 import com.jb.reportapp.service.IRepostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.sql.SQLOutput;
+import java.util.List;
 
 @Controller
 public class ReportController {
@@ -27,12 +31,13 @@ public class ReportController {
 
         System.out.println(searchRequest);
 
-        var results = repostService.search(searchRequest);
+        List<CitizenPlan> plans= repostService.search(searchRequest);
 
-        model.addAttribute("results", results);
+        model.addAttribute("plans", plans);
         model.addAttribute("search", searchRequest);
 
         loadDropdowns(model);
+        System.out.println(plans);
 
         return "index";
     }

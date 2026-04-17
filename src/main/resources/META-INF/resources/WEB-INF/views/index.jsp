@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -32,7 +33,7 @@
                     <label class="form-label">Plan Name</label>
                     <form:select path="planName" cssClass="form-select">
                         <form:option value="">-Select-</form:option>
-                        <form:options items="${names}" />
+                        <form:options items="${names}"/>
                     </form:select>
                 </div>
 
@@ -40,7 +41,7 @@
                     <label class="form-label">Plan Status</label>
                     <form:select path="planStatus" cssClass="form-select">
                         <form:option value="">-Select-</form:option>
-                        <form:options items="${status}" />
+                        <form:options items="${status}"/>
                     </form:select>
                 </div>
 
@@ -82,7 +83,40 @@
 
         <!-- Results Section Placeholder -->
         <div class="text-muted text-center py-3">
-            <i class="bi bi-table"></i> Results will appear here
+            <c:if test="${not empty plans}">
+                <div class="mt-3">
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Citizen Id</th>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Plan Name</th>
+                            <th>Status</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Benefit Amt</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${plans}" var="plan" varStatus="index">
+                            <tr>
+                                <td>${index.count}</td>
+                                <td>${plan.citizenId}</td>
+                                <td>${plan.citizenName}</td>
+                                <td>${plan.gender}</td>
+                                <td>${plan.planName}</td>
+                                <td>${plan.planStatus}</td>
+                                <td>${plan.planStartDate}</td>
+                                <td>${plan.planEndDate}</td>
+                                <td>${plan.benefitAmount}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </c:if>
         </div>
 
         <hr>
