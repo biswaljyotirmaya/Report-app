@@ -132,7 +132,7 @@
                 <a href="/excel" class="btn btn-success">
                     <i class="bi bi-file-earmark-excel"></i> Excel
                 </a>
-                <a href="" class="btn btn-danger">
+                <a href="/pdf" class="btn btn-danger">
                     <i class="bi bi-file-pdf"></i> Pdf
                 </a>
 
