@@ -129,10 +129,13 @@
             </div>
 
             <div class="col-md-6">
-                <select class="form-select" name="exportType">
-                    <option value="pdf">PDF</option>
-                    <option value="excel">Excel</option>
-                </select>
+                <a href="/excel" class="btn btn-success">
+                    <i class="bi bi-file-earmark-excel"></i> Excel
+                </a>
+                <a href="" class="btn btn-danger">
+                    <i class="bi bi-file-pdf"></i> Pdf
+                </a>
+
             </div>
 
         </div>
