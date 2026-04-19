@@ -6,10 +6,22 @@ import com.jb.reportapp.request.SearchRequest;
 import com.jb.reportapp.util.ExcelGenerator;
 import com.jb.reportapp.util.PdfGenerator;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openpdf.text.*;
+import org.openpdf.text.Font;
+import org.openpdf.text.pdf.PdfPCell;
+import org.openpdf.text.pdf.PdfPTable;
+import org.openpdf.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.awt.Color;
+import java.io.File;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -53,15 +65,16 @@ public class ReportServiceImpl implements IReportService {
 
     @Override
     public boolean exportExcel(HttpServletResponse response) throws Exception {
-        List<CitizenPlan> allReports = citizenPlanRepository.findAll();
-        excelGenerator.generateExcel(response, allReports);
+        File file=new File("Plans.xls");
+        List<CitizenPlan> allReports=citizenPlanRepository.findAll();
+        excelGenerator.generateExcel(response,allReports,file);
         return true;
     }
 
     @Override
     public boolean exportPdf(HttpServletResponse response) throws Exception {
-        List<CitizenPlan> allReports = citizenPlanRepository.findAll();
-        pdfGenerator.generatePdf(response, allReports);
+        List<CitizenPlan> allReports=citizenPlanRepository.findAll();
+        pdfGenerator.generatePdf(response,allReports);
         return true;
     }
 }
